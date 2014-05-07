@@ -256,6 +256,9 @@ extends Fontis_Australia_Model_Shipping_Carrier_Eparcel_Export_Abstract
         $consignementRecord->consigneePhoneNumber     = $order->getShippingAddress()->getData('telephone');
         $consignementRecord->ref                      = $order->hasInvoices() ? $order->getInvoiceCollection()->getLastItem()->getData('increment_id') : "";
         $consignementRecord->ref2                     = $order->getRealOrderId();
+
+        $consignementRecord->consigneeEmail           = $order->getBillingAddress()->getEmail();
+        $consignementRecord->consigneeEmailNotification = 'DESPATCH';
         
         return $consignementRecord;
     }
